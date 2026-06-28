@@ -78,17 +78,14 @@ The system was developed as a proof-of-concept using a PICUNO microcontroller pl
 
 ## System Operation
 
-The CubeSat continuously monitors ambient light and onboard temperature.
-
-Based on sensor readings, the onboard controller automatically determines the spacecraft operating condition:
-
-* Normal Operation
-* Solar Charging Mode
-* Eclipse Mode
-* Thermal Protection Mode
-* Fault Condition
-
-Visual indications are provided through LEDs while critical warnings activate an onboard buzzer. The LCD continuously displays system telemetry.
+Good (Normal) Condition: Battery level is sufficient, temperature is within the safe operating range, and communication is active. The solar panel charges the Li-ion battery (when sunlight is available), and all subsystems and the reconnaissance payload operate normally.
+Warning Condition: Battery level decreases or temperature approaches the upper safe limit. The system enters a power-saving mode by reducing non-essential operations while transmitting a warning to the MATLAB ground station.
+Critical Condition: Battery level falls below the critical threshold, temperature exceeds the safe limit, or communication fails. The payload is disabled, the relay isolates selected loads, the buzzer and LEDs indicate a fault, and a critical alert is transmitted to the ground station.
+Sunlight (Charging) Condition: The mini solar panel generates electrical power to operate the CubeSat and safely charge the Li-ion battery through the TP4056 charging module.
+Eclipse (Discharging) Condition: During eclipse or the absence of sunlight, the CubeSat operates using stored battery energy while optimizing power consumption to maximize mission duration.
+Thermal Monitoring Condition: The LM35/DHT11 sensor continuously monitors the onboard temperature. If overheating is detected, protective actions are initiated to prevent subsystem damage.
+Telemetry and Fault Monitoring Condition: Battery voltage, current, temperature, communication status, and system faults are continuously monitored and transmitted to the MATLAB ground station for real-time health assessment.
+Attitude Simulation Condition: Simulated pitch, roll, and yaw represent the spacecraft's orientation, with future integration of an MPU6050 IMU for real-time attitude determination and control (ADCS).
 
 ---
 
