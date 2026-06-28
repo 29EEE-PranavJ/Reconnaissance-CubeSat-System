@@ -1,10 +1,10 @@
-## 🚀 Aerospace Mission
+## 🌍 Geological & Renewable Energy Mission
 
-Simulates a CubeSat operating in Earth orbit while monitoring solar exposure, eclipse transitions, battery status, thermal conditions, and spacecraft attitude. The mission demonstrates autonomous power management during orbital operations.
+Demonstrates Earth observation for geological surveying and renewable energy assessment. The satellite scans terrain to evaluate solar irradiance, wind resources, geothermal activity, and renewable energy potential.
 
 **Features**
-- Earth orbit simulation
-- Solar charging & eclipse detection
-- Battery and thermal monitoring
-- Mission telemetry
-- Power mode switching
+- Terrain mapping
+- Solar resource assessment
+- Wind energy monitoring
+- Geothermal hotspot detection
+- Renewable energy potential analysis
