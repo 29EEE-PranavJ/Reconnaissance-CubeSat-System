@@ -18,11 +18,7 @@ The system was developed as a proof-of-concept using a PICUNO microcontroller pl
 * To incorporate autonomous fault detection and protection mechanisms capable of identifying conditions such as low battery, overheating, and communication failures, while automatically activating alarms and isolating affected subsystems to enhance system reliability.
 * To simulate spacecraft attitude parameters including pitch, roll, and yaw to represent spacecraft orientation and provide a platform for future integration of an MPU6050-based Attitude Determination and Control System (ADCS).
 * To validate the CubeSat's mission performance through MATLAB simulations by modelling orbital solar energy availability, battery charging and discharging behaviour, thermal dynamics, payload activation, and overall mission health under realistic operating conditions.
-*To demonstrate the CubeSat's applicability across multiple mission domains, including:
-  Geological Survey
-  Renewable Energy Assessment
-  Defence Reconnaissance
-  Aerospace Missions
+* To demonstrate the CubeSat's applicability across multiple mission domains, including Geological Survey, Renewable Energy Assessment, Defence Reconnaissance, Aerospace Missions
 
 ---
 
