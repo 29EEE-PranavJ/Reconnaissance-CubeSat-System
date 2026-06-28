@@ -10,17 +10,19 @@ The system was developed as a proof-of-concept using a PICUNO microcontroller pl
 
 ## Project Objectives
 
-* Develop an autonomous energy-aware CubeSat prototype.
-* Monitor onboard temperature and environmental lighting conditions.
-* Dynamically switch operating modes based on available energy.
-* Display real-time telemetry and mission status.
-* Generate mission-level analytical simulations in MATLAB.
-* Demonstrate multi-domain satellite applications including:
-
-  * Geological Survey
-  * Renewable Energy Assessment
-  * Defence Reconnaissance
-  * Aerospace Missions
+* To develop an autonomous CubeSat prototype capable of simulating defence reconnaissance missions by integrating power management, telemetry, thermal monitoring, communication, and fault detection into a single embedded system.
+* To implement an energy-aware power management system that harvests energy from a mini solar panel, safely stores it in a Li-ion battery, and intelligently manages power distribution to ensure efficient operation during both sunlight and eclipse conditions.
+* To design a reliable battery charging and protection system using a TP4056 charging module with overcharge and over-discharge protection, enabling safe solar charging, improved battery lifespan, and uninterrupted power availability for critical onboard subsystems.
+* To continuously monitor critical system parameters including battery voltage, charging/discharging current, temperature, and overall system health using onboard sensors, thereby ensuring reliable spacecraft operation and timely detection of abnormal conditions.
+* To establish a real-time telemetry and communication system that transmits battery status, temperature, power mode, attitude data, and fault information to a MATLAB-based ground station for continuous monitoring, visualization, and mission analysis.
+* To incorporate autonomous fault detection and protection mechanisms capable of identifying conditions such as low battery, overheating, and communication failures, while automatically activating alarms and isolating affected subsystems to enhance system reliability.
+* To simulate spacecraft attitude parameters including pitch, roll, and yaw to represent spacecraft orientation and provide a platform for future integration of an MPU6050-based Attitude Determination and Control System (ADCS).
+* To validate the CubeSat's mission performance through MATLAB simulations by modelling orbital solar energy availability, battery charging and discharging behaviour, thermal dynamics, payload activation, and overall mission health under realistic operating conditions.
+*To demonstrate the CubeSat's applicability across multiple mission domains, including:
+  Geological Survey
+  Renewable Energy Assessment
+  Defence Reconnaissance
+  Aerospace Missions
 
 ---
 
@@ -40,30 +42,20 @@ The system was developed as a proof-of-concept using a PICUNO microcontroller pl
 
 ## Hardware Components
 
-* PICUNO Development Board
-* LM35 Temperature Sensor
-* LDR (Light Dependent Resistor)
-* 16×2 LCD Display
-* Piezo Buzzer
-* Red LED
-* Yellow LED
-* Green LED
-* 220 Ω Resistors
-* 10 kΩ Resistor
-* Breadboard
-* Jumper Wires
-* USB Power Supply
-
-### Proposed Future Hardware
-
-* MPU6050 IMU
-* NRF24L01 Wireless Module
-* OLED Display
+* PICUNO Microcontroller
 * Mini Solar Panel
-* TP4056 Charging Module
+* TP4056 Li-ion Charging Module (with overcharge/over-discharge protection)
 * Li-ion Battery
-* Current & Voltage Sensors
-* Relay Protection Module
+* Voltage Sensor
+* Current Sensor
+* LM35 Temperature Sensor (or DHT11 Temperature Sensor)
+* NRF24L01 Wireless Transceiver Module
+* MATLAB Ground Station Dashboard
+* 0.96-inch OLED Display
+* Status LEDs
+* Buzzer
+* Relay Module
+* MPU6050 IMU (Gyroscope + Accelerometer)
 
 ---
 
@@ -78,14 +70,14 @@ The system was developed as a proof-of-concept using a PICUNO microcontroller pl
 
 ## System Operation
 
-Good (Normal) Condition: Battery level is sufficient, temperature is within the safe operating range, and communication is active. The solar panel charges the Li-ion battery (when sunlight is available), and all subsystems and the reconnaissance payload operate normally.
-Warning Condition: Battery level decreases or temperature approaches the upper safe limit. The system enters a power-saving mode by reducing non-essential operations while transmitting a warning to the MATLAB ground station.
-Critical Condition: Battery level falls below the critical threshold, temperature exceeds the safe limit, or communication fails. The payload is disabled, the relay isolates selected loads, the buzzer and LEDs indicate a fault, and a critical alert is transmitted to the ground station.
-Sunlight (Charging) Condition: The mini solar panel generates electrical power to operate the CubeSat and safely charge the Li-ion battery through the TP4056 charging module.
-Eclipse (Discharging) Condition: During eclipse or the absence of sunlight, the CubeSat operates using stored battery energy while optimizing power consumption to maximize mission duration.
-Thermal Monitoring Condition: The LM35/DHT11 sensor continuously monitors the onboard temperature. If overheating is detected, protective actions are initiated to prevent subsystem damage.
-Telemetry and Fault Monitoring Condition: Battery voltage, current, temperature, communication status, and system faults are continuously monitored and transmitted to the MATLAB ground station for real-time health assessment.
-Attitude Simulation Condition: Simulated pitch, roll, and yaw represent the spacecraft's orientation, with future integration of an MPU6050 IMU for real-time attitude determination and control (ADCS).
+* Good (Normal) Condition: Battery level is sufficient, temperature is within the safe operating range, and communication is active. The solar panel charges the Li-ion battery (when sunlight is available), and all subsystems and the reconnaissance payload operate normally.
+* Warning Condition: Battery level decreases or temperature approaches the upper safe limit. The system enters a power-saving mode by reducing non-essential operations while transmitting a warning to the MATLAB ground station.
+* Critical Condition: Battery level falls below the critical threshold, temperature exceeds the safe limit, or communication fails. The payload is disabled, the relay isolates selected loads, the buzzer and LEDs indicate a fault, and a critical alert is transmitted to the ground station.
+* Sunlight (Charging) Condition: The mini solar panel generates electrical power to operate the CubeSat and safely charge the Li-ion battery through the TP4056 charging module.
+* Eclipse (Discharging) Condition: During eclipse or the absence of sunlight, the CubeSat operates using stored battery energy while optimizing power consumption to maximize mission duration.
+* Thermal Monitoring Condition: The LM35/DHT11 sensor continuously monitors the onboard temperature. If overheating is detected, protective actions are initiated to prevent subsystem damage.
+* Telemetry and Fault Monitoring Condition: Battery voltage, current, temperature, communication status, and system faults are continuously monitored and transmitted to the MATLAB ground station for real-time health assessment.
+* Attitude Simulation Condition: Simulated pitch, roll, and yaw represent the spacecraft's orientation, with future integration of an MPU6050 IMU for real-time attitude determination and control (ADCS).
 
 ---
 
@@ -141,7 +133,7 @@ PICUNO Flight Computer
  ┌──────┼────────────┐
  │      │            │
  ▼      ▼            ▼
-LCD    LEDs       Buzzer
+OLED    LEDs       Buzzer
         │
         ▼
 Mission Decision Engine
